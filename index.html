@@ -1,0 +1,334 @@
+<!DOCTYPE html>
+<html lang="fr">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>netpoe</title>
+
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet"
+        integrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH" crossorigin="anonymous">
+
+    <!-- Shepherd -->
+    <!-- <script src="https://cdn.jsdelivr.net/npm/shepherd.js@10.0.1/dist/js/shepherd.min.js"></script>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/shepherd.js@10.0.1/dist/css/shepherd.css" /> -->
+
+    <!-- Favicon -->
+    <!-- <link rel="apple-touch-icon" sizes="180x180" href="Favicon/apple-touch-icon.png">
+    <link rel="icon" type="image/png" sizes="32x32" href="Favicon/favicon-32x32.png">
+    <link rel="icon" type="image/png" sizes="16x16" href="Favicon/favicon-16x16.png">
+    <link rel="manifest" href="Favicon/site.webmanifest"> -->
+
+    <link rel="stylesheet" href="style.css">
+</head>
+
+<body>
+
+    <div class="containerall">
+
+        <div class="container mt-5">
+            <div class="row">
+                <div class="col">
+                    <h1>netpoe</h1>
+                </div>
+            </div>
+        </div>
+
+        <section class="container mt-5">
+            <div class="form-group row">
+                <label for="switchSelection" class="col-sm-6 col-form-label">Sélectionner un commutateur Alcatel-Lucent</label>
+                <div class="col-sm-6">
+                    <select class="form-select" id="switchSelection" onchange="switchChanged()">
+                        <option value="default" selected disabled>Sélectionner un commutateur</option>
+                        <option value="OS6360-P10 (120W)">OmniSwitch OS6360-P10 (120W, passif, 10 ports)</option>
+                        <option value="OS6360-P24 (180W)">OmniSwitch OS6360-P24 (180W, passif, 24 ports)</option>
+                        <option value="OS6360-PH24 (380W)">OmniSwitch OS6360-PH24 (380W, actif, 24 ports)</option>
+                        <option value="OS6360-P48 (350W)">OmniSwitch OS6360-P48 (350W, actif, 48 ports)</option>
+                        <option value="OS6360-PH48 (760W)">OmniSwitch OS6360-PH48 (760W, actif, 48 ports)</option>
+                        <option value="custom">Budget PoE personnalisé (autre marque)</option>
+                    </select>
+                </div>
+            </div>
+            <div id="customBudgetField" style="display: none;">
+                <div class="form-group row">
+                    <label for="customBudget" class="col-sm-6 col-form-label">Budget PoE personnalisé (autre marque)</label>
+                    <div class="col-sm-6">
+                        <div class="input-group">
+                            <input type="number" min="0" placeholder="Enter custom PoE budget" class="form-control"
+                                id="customBudget" oninput="calculateLeftoverBudget()">
+                            <span class="input-group-text">W</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="classInputs">
+                <div class="table-responsive">
+                    <h4>Wi-Fi ALE</h4>
+                    <table class="table table-striped table-hover table-borderless ">
+                        <thead>
+                            <tr>
+                                <th scope="col">Modèle</th>
+                                <th scope="col">Quantité</th>
+                                <th scope="col">Modèle</th>
+                                <th scope="col">Quantité</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr>
+                                <td>AP-1201</td>
+                                <td>
+                                    <div class="input-group">
+                                        <input type="number" min="0" class="form-control class-input" id="w1201"
+                                            value="0" oninput="calculateLeftoverBudget()">
+                                    </div>
+                                </td>
+                                <td>AP-1320</td>
+                                <td>
+                                    <div class="input-group">
+                                        <input type="number" min="0" class="form-control class-input" id="w1320"
+                                            value="0" oninput="calculateLeftoverBudget()">
+                                    </div>
+                                </td>
+                            </tr>
+                            <tr>
+                                <td>AP-1201h</td>
+                                <td>
+                                    <div class="input-group">
+                                        <input type="number" min="0" class="form-control class-input" id="w1201h"
+                                            value="0" oninput="calculateLeftoverBudget()">
+                                    </div>
+                                </td>
+                                <td>AP-1331</td>
+                                <td>
+                                    <div class="input-group">
+                                        <input type="number" min="0" class="form-control class-input" id="w1331"
+                                            value="0" oninput="calculateLeftoverBudget()">
+                                    </div>
+                                </td>
+                            </tr>
+                            <tr>
+                                <td>AP-1231</td>
+                                <td>
+                                    <div class="input-group">
+                                        <input type="number" min="0" class="form-control class-input" id="w1231"
+                                            value="0" oninput="calculateLeftoverBudget()">
+                                    </div>
+                                </td>
+                                <td>AP-1351</td>
+                                <td>
+                                    <div class="input-group">
+                                        <input type="number" min="0" class="form-control class-input" id="w1351"
+                                            value="0" oninput="calculateLeftoverBudget()">
+                                    </div>
+                                </td>
+                            </tr>
+                            <tr>
+                                <td>AP-1232</td>
+                                <td>
+                                    <div class="input-group">
+                                        <input type="number" min="0" class="form-control class-input" id="w1232"
+                                            value="0" oninput="calculateLeftoverBudget()">
+                                    </div>
+                                </td>
+                                <td>AP-1360</td>
+                                <td>
+                                    <div class="input-group">
+                                        <input type="number" min="0" class="form-control class-input" id="w1361"
+                                            value="0" oninput="calculateLeftoverBudget()">
+                                    </div>
+                                </td>
+                            </tr>
+                            <tr>
+                                <td>AP-1251</td>
+                                <td>
+                                    <div class="input-group">
+                                        <input type="number" min="0" class="form-control class-input" id="w1251"
+                                            value="0" oninput="calculateLeftoverBudget()">
+                                    </div>
+                                </td>
+                                <td>AP-1411</td>
+                                <td>
+                                    <div class="input-group">
+                                        <input type="number" min="0" class="form-control class-input" id="w1411"
+                                            value="0" oninput="calculateLeftoverBudget()">
+                                    </div>
+                                </td>
+                            </tr>
+                            <tr>
+                                <td>AP-1301</td>
+                                <td>
+                                    <div class="input-group">
+                                        <input type="number" min="0" class="form-control class-input" id="w1301"
+                                            value="0" oninput="calculateLeftoverBudget()">
+                                    </div>
+                                </td>
+                                <td>AP-1451</td>
+                                <td>
+                                    <div class="input-group">
+                                        <input type="number" min="0" class="form-control class-input" id="w1451"
+                                            value="0" oninput="calculateLeftoverBudget()">
+                                    </div>
+                                </td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+                <div class="table-responsive">
+                    <h4>Postes ALE</h4>
+                    <table class="table table-striped table-hover table-borderless ">
+                        <thead>
+                            <tr>
+                                <th scope="col">Modèle</th>
+                                <th scope="col">Quantité</th>
+                                <th scope="col">Modèle</th>
+                                <th scope="col">Quantité</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr>
+                                <td>OXO Connect Evolution</td>
+                                <td>
+                                    <div class="input-group">
+                                        <input type="number" min="0" max="1" class="form-control class-input" id="OCE"
+                                            value="0" oninput="calculateLeftoverBudget()">
+                                    </div>
+                                </td>
+                                <td>8378 IP-xBS</td>
+                                <td>
+                                    <div class="input-group">
+                                        <input type="number" min="0" class="form-control class-input" id="8378"
+                                            value="0" oninput="calculateLeftoverBudget()">
+                                    </div>
+                                </td>
+                            </tr>
+                            <tr>
+                                <td>Pieuvre de conf. OT8135s</td>
+                                <td>
+                                    <div class="input-group">
+                                        <input type="number" min="0" class="form-control class-input" id="ot8135s"
+                                            value="0" oninput="calculateLeftoverBudget()">
+                                    </div>
+                                </td>
+                                <td>ALE-20h</td>
+                                <td>
+                                    <div class="input-group">
+                                        <input type="number" min="0" class="form-control class-input" id="pale"
+                                            value="0" oninput="calculateLeftoverBudget()">
+                                    </div>
+                                </td>
+                            </tr>
+                            <tr>
+                                <td>ALE-30h</td>
+                                <td>
+                                    <div class="input-group">
+                                        <input type="number" min="0" class="form-control class-input" id="pale"
+                                            value="0" oninput="calculateLeftoverBudget()">
+                                    </div>
+                                </td>
+                                <td>ALE-300</td>
+                                <td>
+                                    <div class="input-group">
+                                        <input type="number" min="0" class="form-control class-input" id="pale"
+                                            value="0" oninput="calculateLeftoverBudget()">
+                                    </div>
+                                </td>
+                            </tr>
+                            <tr>
+                                <td>ALE-400</td>
+                                <td>
+                                    <div class="input-group">
+                                        <input type="number" min="0" class="form-control class-input" id="pale"
+                                            value="0" oninput="calculateLeftoverBudget()">
+                                    </div>
+                                </td>
+                                <td>ALE-500</td>
+                                <td>
+                                    <div class="input-group">
+                                        <input type="number" min="0" class="form-control class-input" id="pale"
+                                            value="0" oninput="calculateLeftoverBudget()">
+                                    </div>
+                                </td>
+                            </tr>
+                            <tr>
+                                <td>ALE-2</td>
+                                <td>
+                                    <div class="input-group">
+                                        <input type="number" min="0" class="form-control class-input" id="pale2"
+                                            value="0" oninput="calculateLeftoverBudget()">
+                                    </div>
+                                </td>
+                                <td>M3</td>
+                                <td>
+                                    <div class="input-group">
+                                        <input type="number" min="0" class="form-control class-input" id="pm357"
+                                            value="0" oninput="calculateLeftoverBudget()">
+                                    </div>
+                                </td>
+                            </tr>
+                            <tr>
+                                <td>M5</td>
+                                <td>
+                                    <div class="input-group">
+                                        <input type="number" min="0" class="form-control class-input" id="pm357"
+                                            value="0" oninput="calculateLeftoverBudget()">
+                                    </div>
+                                </td>
+                                <td>M7</td>
+                                <td>
+                                    <div class="input-group">
+                                        <input type="number" min="0" class="form-control class-input" id="pm357"
+                                            value="0" oninput="calculateLeftoverBudget()">
+                                    </div>
+                                </td>
+                            </tr>
+                            <tr>
+                                <td>M8</td>
+                                <td>
+                                    <div class="input-group">
+                                        <input type="number" min="0" class="form-control class-input" id="pm8"
+                                            value="0" oninput="calculateLeftoverBudget()">
+                                    </div>
+                                </td>
+                                <td>Satellites</td>
+                                <td>
+                                    <div class="input-group">
+                                        <input type="number" min="0" class="form-control class-input" id="pale"
+                                            value="0" oninput="calculateLeftoverBudget()">
+                                    </div>
+                                </td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+            <div class="form-group row">
+                <label for="leftoverBudget" class="col-sm-6 col-form-label">BUDGET RESTANT</label>
+                <div class="col-sm-6">
+                    <div class="input-group">
+                        <input type="number" class="form-control" id="leftoverBudget" readonly>
+                        <span class="input-group-text">W</span>
+                    </div>
+                </div>
+            </div>
+
+        </section>
+
+    </div>
+
+    <footer class="footer py-3 mt-5">
+        <div class="container text-center text-mute">
+            <p>Crée par Avelinnt - &copy; 2024</p>
+        </div>
+    </footer>
+
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"
+        integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz"
+        crossorigin="anonymous"></script>
+
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/js-cookie/3.0.1/js.cookie.min.js"></script>
+
+    <script src="calc.js"></script>
+</body>
+
+</html>

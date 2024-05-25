@@ -1,0 +1,82 @@
+@import url('https://fonts.googleapis.com/css2?family=Bowlby+One&family=Chilanka&display=swap');
+
+.text-mute a {
+    color: rgb(207 204 204);
+}
+
+.container {
+    background-color: #f7f7f7;
+    padding: 20px;
+    border-radius: 8px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+}
+
+.form-group {
+    display: flex;
+    align-items: center;
+    margin-bottom: 15px;
+}
+
+.form-label {
+    flex: 1;
+    text-align: right;
+    margin-right: 20px;
+}
+
+.form-control, .form-check-input, .input-group-text {
+    width: auto;
+}
+
+.input-group {
+    flex: 2;
+}
+
+.input-group-text {
+    background-color: #e9ecef;
+}
+
+.form-check {
+    flex-direction: row;
+    align-items: center;
+}
+
+.form-check-label {
+    margin-left: 5px;
+}
+
+.form-check-input {
+    appearance: none; 
+    background-color: #fff;
+    border: 2px solid #ccc;
+    padding: 10px;
+    border-radius: 4px;
+    display: inline-block;
+    position: relative;
+    width: 20px; 
+    height: 20px; 
+}
+
+.form-check-input:checked {
+    background-color: #007bff;
+    border-color: #007bff;
+    background-image: none !important;
+}
+
+.form-check-input:checked::after {
+    content: '\2714';
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%); 
+    color: #fff;
+    font-size: 14px; 
+}
+
+.form-select {
+    cursor: pointer;
+}
+
+#leftoverBudget {
+    background-color: #e9ecef;
+    color: #495057;
+}
