@@ -2,7 +2,7 @@
 
 ## Description
 
-netpoe a été crée dans un but participatif afin d'octroyer à mes collègues la capacité à calculer le budget POE d'une gamme de switchs Alcatel-Lucent sans avoir à fouiller dans les documentations techniques.
+netpoe a été crée dans un but participatif afin d'aider mes collègues à calculer le budget POE d'une gamme de switchs Alcatel-Lucent sans avoir à fouiller dans les documentations techniques.
 
 ## Fonctionnement
 
